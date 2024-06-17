@@ -37,4 +37,13 @@ public class Fruit {
     public void setKilos(int kilos) {
         this.kilos = kilos;
     }
+
+    @Override
+    public String toString() {
+        return "Fruit{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", kilos=" + kilos +
+                '}';
+    }
 }
