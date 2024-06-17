@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class HelloWorldController {
     @GetMapping("/hello")
-    @ResponseBody
     private String hello(@RequestParam(value = "name", defaultValue = "UNKNOWN") String name) {
         return "Hola, " + name + ". Estàs executant un projecte Maven.";
     }
+    //localhost:9000?name=bob
 
     @GetMapping({"/hello2", "/hello2/{name}"})
     private String hello2(@PathVariable(required = false) String name) {
