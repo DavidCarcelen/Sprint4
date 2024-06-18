@@ -1,13 +1,21 @@
 package cat.itacademy.barcelonactiva.carcelen.david.s04.t02.n01.controllers;
 
 import cat.itacademy.barcelonactiva.carcelen.david.s04.t02.n01.model.domain.Fruit;
+import cat.itacademy.barcelonactiva.carcelen.david.s04.t02.n01.model.services.FruitServices;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class FruitController {
+public class FruitController { // mirar response entity
+    private FruitServices fs;
     @PostMapping("/fruit/add")
-    private String addFruit (Fruit fruit){
-        return "You added " + fruit.getName();
+    private String addFruit (){
+        //Fruit f = new Fruit("manzana", 20);//tomar datos
+        try {
+
+        }catch(Exception e){
+
+        }
+        return "You added ";
     }
     @PutMapping("/fruit/update")
     private String updateFruit (Fruit fruit){
