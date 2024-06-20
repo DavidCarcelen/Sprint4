@@ -4,7 +4,6 @@ import cat.itacademy.barcelonactiva.carcelen.david.s04.t02.n01.model.domain.Frui
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 
 @Repository
 public interface FruitRepo extends JpaRepository<Fruit,Integer> {

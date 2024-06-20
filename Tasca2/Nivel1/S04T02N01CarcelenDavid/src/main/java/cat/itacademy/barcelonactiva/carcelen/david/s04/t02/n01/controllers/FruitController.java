@@ -5,17 +5,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 import cat.itacademy.barcelonactiva.carcelen.david.s04.t02.n01.model.domain.Fruit;
-import cat.itacademy.barcelonactiva.carcelen.david.s04.t02.n01.model.services.FruitService;
+import cat.itacademy.barcelonactiva.carcelen.david.s04.t02.n01.model.services.impl.FruitServiceImpl;
 
 @RestController
 @RequestMapping("/fruits")
 public class FruitController {
 
     @Autowired
-    private FruitService fruitService;
+    private FruitServiceImpl fruitService;
 
     @PostMapping("/add")
     public ResponseEntity<Fruit> addFruit(@RequestBody Fruit fruit) {
@@ -23,28 +22,22 @@ public class FruitController {
         return ResponseEntity.ok(savedFruit);
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Fruit> updateFruit(@PathVariable int id, @RequestBody Fruit fruit) {
-        Fruit updatedFruit = fruitService.updateFruit(id, fruit);
-        if (updatedFruit != null) {
+    @PutMapping("/update")
+    public ResponseEntity<Fruit> updateFruit(@RequestBody Fruit fruit) {
+            Fruit updatedFruit = fruitService.updateFruit(fruit);
             return ResponseEntity.ok(updatedFruit);
-        }
-        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteFruit(@PathVariable int id) {
+    public ResponseEntity<String> deleteFruit(@PathVariable int id) {
         fruitService.deleteFruit(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("Fruit deleted");
     }
 
     @GetMapping("/getOne/{id}")
-    public ResponseEntity<Optional<Fruit>> getFruitById(@PathVariable int id) {
-        Optional<Fruit> fruit = fruitService.getFruitById(id);
-        if (fruit.isPresent()) {
-            return ResponseEntity.ok(fruit);
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<Fruit> getFruitById(@PathVariable int id) {
+        Fruit fruit = fruitService.getFruitById(id);
+        return ResponseEntity.ok().body(fruit);
     }
 
     @GetMapping("/getAll")
